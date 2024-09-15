@@ -23,11 +23,33 @@ def AddCustom():
 
 
 def Withdrawal():
-    pass
+    account_number = AccNum.get()
+    amount = float(AmountTxt.get())
+
+    if account_number in customer:
+        if customer[account_number]["Balance"] >= amount:
+            customer[account_number]["Balance"] = customer[account_number]["Balance"] - amount
+            messagebox.showinfo("Success",f"{amount} BDT Successfully withdrawn from Account Number {customer[account_number]}")
+        else:
+            messagebox.showerror("Error","Invalid Amount !")
+
+
 def Deposition():
-    pass
+        account_number = AccNum.get()
+        amount = float(AmountTxt.get())
+        if account_number in customer:
+            customer[account_number]["Balance"] = customer[account_number]["Balance"] + amount
+            messagebox.showinfo("Success",f"{amount} BDT Successfully deposited in Account Number {customer[account_number]}")
+        else:
+            messagebox.showerror("Error","Invalid !")
+    
 def Check():
-    pass
+        account_number = AccNum.get()
+        if account_number in customer:
+            messagebox.showinfo("Success",f"Current Amount {customer[account_number]["Balance"]} BDT")
+        else:
+             messagebox.showerror("Error","Inavlid !")
+        
 
 CustomerName=Label(text="Customer Name",font=("Arial",15,"bold")).grid(row=0,column=0,padx=5,pady=5)
 AccountNumber=Label(text="Account Number",font=("Arial",15,"bold")).grid(row=1,column=0,padx=5,pady=5)
